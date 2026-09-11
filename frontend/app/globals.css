@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+/* Base body styles using Tailwind classes instead of CSS vars to avoid conflicts */
+@layer base {
+  body {
+    @apply antialiased;
+  }
+}

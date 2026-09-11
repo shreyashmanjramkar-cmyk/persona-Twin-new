@@ -1,0 +1,25 @@
+.env
+.venv
+venv
+node_modules
+__pycache__
+uploads
+.next
+
+# Mac system files
+.DS_Store
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Databases
+*.db
+*.sqlite3
+sql_app.db
+chroma_db/
