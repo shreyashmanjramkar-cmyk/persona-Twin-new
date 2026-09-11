@@ -78,7 +78,7 @@ class LLMService:
 
     def extract_persona_fields(self, text: str, url: str = "") -> dict:
         if not self.is_configured:
-            return {}
+            return {"name": "LLM NOT CONFIGURED"}
 
         prompt = f"""
         You are tasked with creating a Persona profile based on a URL and its scraped text.
@@ -128,7 +128,7 @@ class LLMService:
                     time.sleep(2 ** attempt)
                     continue
                 print(f"LLM Persona Extraction Error: {e}")
-                return {}
-        return {}
+                return {"error": str(e)}
+        return {"error": "Max retries exceeded"}
 
 llm_service = LLMService()
