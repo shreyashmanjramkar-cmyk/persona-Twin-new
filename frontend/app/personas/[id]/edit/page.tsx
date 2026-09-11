@@ -13,6 +13,7 @@ interface Persona {
   preferred_tone: string;
   opinions: string;
   profile_image?: string;
+  gender?: string;
 }
 
 export default function EditPersonaPage({ params }: { params: Promise<{ id: string }> }) {
