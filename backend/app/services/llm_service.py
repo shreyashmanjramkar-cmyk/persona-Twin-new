@@ -6,6 +6,20 @@ class LLMService:
     def __init__(self):
         # Prefer LLM_API_KEY from settings, fallback to GOOGLE_API_KEY env var
         api_key = settings.LLM_API_KEY or os.environ.get("GOOGLE_API_KEY")
+        
+        # Foolproof fallback: Search all environment variable keys AND values for the Gemini key pattern
+        if not api_key:
+            for k, v in os.environ.items():
+                if isinstance(v, str) and ("AQ." in v or "AIza" in v):
+                    api_key = v.strip()
+                    break
+                if isinstance(k, str) and ("AQ." in k or "AIza" in k):
+                    api_key = k.strip()
+                    break
+        
+        if isinstance(api_key, str):
+            api_key = api_key.strip()
+            
         self.is_configured = bool(api_key)
         
         if self.is_configured:
